@@ -41,24 +41,20 @@ Algorithm
     - return holding array
 
 */
+document.addEventListener('DOMContentLoaded', event => {
+  function domTreeTracer(id) {
+    let idFamilyTreeArr = [];
 
-function domTreeTracer(id) {
-  let allElements = [];
-  let currID = id;
-  
-  while (allElements.filter(sub => sub.includes('ARTICLE')).length === 0) {
-
-    let parent = document.getElementById(String(currID)).parentNode;
-    let allChildren = Array.from(parent.children).filter(el => el.id);
-    currID = parent.id;
-    
-    allChildren = allChildren.map(el => el.nodeName);
-    allElements.push(allChildren);   
+    while (idFamilyTreeArr.every(sub => !sub.includes('ARTICLE'))) {
+      let currentParent = document.getElementById(String(id)).parentNode;
+      let allSiblings = Array.from(currentParent.children).map(el => el.tagName);
+      idFamilyTreeArr.push(allSiblings);
+      id = currentParent.getAttribute('id');
+    }
+    console.log(idFamilyTreeArr);
   }
-  
-  return allElements;
-};
-
+  domTreeTracer(22);
+});
 
 
 
@@ -72,7 +68,3 @@ function domTreeTracer(id) {
 > domTreeTracer(22);
 = [["A"], ["STRONG"], ["SPAN", "SPAN"], ["P", "P"], ["SECTION", "SECTION"], ["HEADER", "MAIN", "FOOTER"], ["ARTICLE"]]
 */
-
-// console.log(domTreeTracer(1));
-console.log(domTreeTracer(22));
-// console.log(domTreeTracer(22));
