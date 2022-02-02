@@ -19,22 +19,36 @@ algorithm
     - if !node1 or !node2
     - or if oneIsChildOfOther(node1, node2) (helper function)
     return undefined
-  - get the parent and position of each node
-  - remove each node from their positions
-    - move into temporary holder???
-  - insert each node at their new positions
-  - remove temporary holder structure??
+  - deep copy each node
+  - then replace each original node with the opposite copy
 
 
 helper: oneIsChildOfOther takes two nodes as args
-  return !hasChild(node1, node2) && !hasChild(node2, node1);
-
-helper: hasChild takes two nodes as args, parent, child
-  declare currentNode and init to childNode
-  loop until currentNode === body
-    - if currentNode.parent === parent
-      - return true
-    - reassign currentNode to currentNode.parent
-  return false
+  return node1 contains node2 || node2 returns node1
 
 */
+
+document.addEventListener('DOMContentLoaded', event => {
+  console.log(event.type)
+  console.log(event.target)
+  console.log(event.target)
+
+
+  function nodeSwap(id1, id2) {
+    let node1 = document.getElementById(id1);
+    let node2 = document.getElementById(id2);
+
+    if ((!node1 || !node2) || 
+      oneIsChildOfOther(node1, node2)) return undefined;
+    
+    let node1Copy = node1.cloneNode(true);
+    let node2Copy = node2.cloneNode(true);
+
+    node1.parentNode.replaceChild(node2Copy, node1);
+    node2.parentNode.replaceChild(node1Copy, node2);
+  };
+
+  function oneIsChildOfOther(node1, node2) {
+    return node1.contains(node2) || node2.contains(node1);
+  };
+});
