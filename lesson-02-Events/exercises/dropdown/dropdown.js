@@ -1,6 +1,6 @@
 "use strict";
 document.addEventListener('DOMContentLoaded', () => {
-  let classifFilter = {
+  let classMenu = {
     'Classifications': ['Animals', 'Bear', 'Turtle',
                         'Whale', 'Salmon', 'Ostrich'],
     'Vertebrate': ['Bear', 'Turtle', 'Whale', 'Salmon', 'Ostrich'],
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'Bird': ['Ostrich'],
    }
    
-   let animalsFilter = {
+   let animalMenu = {
      'Animals': ['Classifications', 'Vertebrate', 'Warm-blooded',
                  'Cold-blooded', 'Mammal', 'Bird'],
      'Bear': ['Vertebrate', 'Warm-blooded', 'Mammal'],
