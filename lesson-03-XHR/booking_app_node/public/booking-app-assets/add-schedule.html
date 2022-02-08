@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+  <title>Booking App - Add Staff</title>
+  <link rel="stylesheet" href="./stylesheets/add-schedule.css"/>
+  <script type="text/javascript" src="./javascripts/add-schedule.js"></script>
+</head>
+<body>
+  <button type="button" id="add_button">Add More Schedules</button>
+  <form action="/api/schedules" method="post">
+    <!-- <div><legend>Schedule 1</legend>
+      <ul>
+        <li>
+          <label for="staff_select1">Staff Name:</label>
+          <select id="staff_select1">
+            <option value="StaffOne" selected>Staff 1</option>
+            <option value="StaffTwo">Staff 2</option>
+            
+          </select>
+        </li>
+        <li>
+          <label for="sched_1_date">Date:</label>
+          <input type="text" id="sched_1_date" name="date1" value="mm-dd-yy">
+        </li>
+        <li>
+          <label for="sched_1_time">Time:</label>
+          <input type="text" id="sched_1_time" name="date1" value="hh:mm">
+        </li>
+      </ul>
+    </div> -->
+    <!-- Need to implement dynamic html to add schedules in here
+    But need to start off with dynamically creating at least one schedule 
+    Then add another schedule each time the add schedule button is pressed-->
+    <button type='submit'>Submit</button>
+  </form>
+</body>

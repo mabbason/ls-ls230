@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+  <title>Booking App - Add Staff</title>
+  <link rel="stylesheet" href="./stylesheets/add-staff.css"/>
+  <script type="text/javascript" src="./javascripts/add-staff.js"></script>
+</head>
+<body>
+  <form action="/api/staff_members" method="post">
+    <ul>
+      <li>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email">
+      </li>
+      <li>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+      </li>
+      <li>
+        <button type='submit'>Submit</button>
+      </li>
+    </ul>
+    
+   </form>
+</body>
