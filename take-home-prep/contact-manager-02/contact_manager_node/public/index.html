@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Contact Manager</title>
+  <style>
+    .hidden { display: none }
+  </style>
+  <script src="./javascripts/jquery.js"></script>
+  <script src="./javascripts/handlebars.js"></script>
+  <script type="module" src="./javascripts/app.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Contact Manager</h1>
+    <h2>Using JavaScript, HTML, and Handlebars</h2>
+  </header>
+  <main>
+    <section class="homeView">
+      <div class="interactBar">
+        <button class="addContactBtn">Add Contact</button>
+        <input type="text" class="searchBox">
+      </div>
+      <div class="listContacts">
+        Handlebars template for listing all the contacts
+      </div>
+    </section> 
+    <section class="formAddContact">
+      <h3>Create Contact</h3>
+      <form action="/api/contacts/" class="formAddContact">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="full_name">
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="phone" name="phone_number" title="eg. 123-456-7894">
+        <label for="tags">Tags:</label>
+        <input type="text" pattern="[a-z-][^a-z]*[a-z-]*" id="tags" name="tags" title="eg. work, friend, custom...">
+        <button type="submit" class="addContactSubmit">Submit</button>
+        <button type="button" class="cancel">Cancel</button>
+      </form>
+    </section>
+    <section class="formEditContact">
+      
+    </section>
+  </main>
+  <footer>Developed by Miles Abbason</footer>
+
+  <script id='contactTemplate' type='text/x-handlebars'>
+    {{#each contacts}}
+    <div class="contact" id="{{id}}">
+      <h4>{{full_name}}</h4>
+      <h5>Phone Number:</h5>
+      <p>{{phone_number}}</p>
+      <h5>Email:</h5>
+      <p>{{email}}</p>
+      <h5>Tags:</h5>
+      {{#if tags}}
+        {{#each tags}}<p>{{tag}}</p>
+        {{/each}}
+      {{/if}}
+      <button class="contactEditBtn">Edit</button>
+      <button class="contactDeleteBtn">Delete</button>
+    </div>
+    {{/each}}
+  </script>
+
+  <script id='editFormTemplate' type='text/x-handlebars'>
+    <h3>Edit Contact</h3>
+      <form action="/api/contacts/{{id}}" class="formEditContact">
+        <label for="name">Name:</label>
+        <input type="text" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"id="name" name="full_name" value="{{full_name}}">
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" value="{{email}}">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="phone" name="phone_number" value="{{phone_number}}">
+        <label for="tags">Tags:</label>
+        <input type="text" pattern="[a-z-][^a-z]*[a-z-]*" id="tags" name="tags" value="{{#if tags}}{{tags}}{{else}}{{/if}}" title="eg. work, friend, custom...">
+        <button type="submit" class="addContactSubmit">Submit</button>
+        <button type="button" class="cancel">Cancel</button>
+      </form>
+  </script>
+</body>
+</html>

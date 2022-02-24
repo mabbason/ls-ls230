@@ -1,20 +1,27 @@
 <!doctype html>
-<html lang="en-US">
+<html>
   <head>
-    <title>On the River</title>
-    <script type="text/javascript" src="practice-01.js"></script>
+    <title>Newsletter Signup</title>
+    <script type="text/javascript" src="./practice-01.js"></script>
   </head>
   <body>
-    <h1>On the River</h1>
-    <p>A poem by Paul Laurence Dunbar</p>
-
-    <p>
-      The sun is low,<br>
-      The waters flow,<br>
-      My boat is dancing to and fro.<br>
-      The eve is still,<br>
-      Yet from the hill<br>
-      The killdeer echoes loud and shrill.
+    <!-- A short comment -->
+    <h1>Newsletter Signup</h1>
+    <p class="intro">
+      To receive our weekly emails, enter your email address below.
+      <a id="simple" href="info.html">Get more info</a>
     </p>
+    <div class="form">
+      <form>
+        <label>
+          Enter your email:
+          <input name="email" placeholder="user.name@domain.test" />
+        </label>
+        <p class="controls">
+          <button id="cancelButton">Cancel</button>
+          <button type="submit" id="submitButton">Subscribe</button>
+        </p>
+      </form>
+    </div>
   </body>
 </html>

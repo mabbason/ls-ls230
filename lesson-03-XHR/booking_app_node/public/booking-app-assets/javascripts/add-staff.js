@@ -1,15 +1,16 @@
 "use strict";
 
-document.addEventListener('DOMContentLoaded', event => {
+document.addEventListener('DOMContentLoaded', () => {
   let form = document.querySelector('form');
 
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    let data = new FormData(form);
-
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let data = new FormData(e.target);
+    
     let request = new XMLHttpRequest();
     request.open('POST', '/api/staff_members');
-    
+    request.send(data);
+
     request.addEventListener('load', event => {
       if (request.status === 400) {
         alert(request.response);
@@ -19,8 +20,6 @@ document.addEventListener('DOMContentLoaded', event => {
         alert(`Successfully created staff with id: ${newStaffId}`);
       }
     });
-
-    request.send(data);
   });
 
   function getSchedules() {
@@ -58,5 +57,4 @@ document.addEventListener('DOMContentLoaded', event => {
     
     request.send();
   };
-
 });

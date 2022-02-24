@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "full_name": "Naveed Fida",
+    "email": "nf@example.com",
+    "phone_number": "777-888-9999",
+    "tags": "work,friend, staff"
+  },
+  {
+    "id": 2,
+    "full_name": "Victor Reyes",
+    "email": "vpr@example.com",
+    "phone_number": "09876543210",
+    "tags": "work,friend"
+  },
+  {
+    "id": 3,
+    "full_name": "Pete Hanson",
+    "email": "pete@example.com",
+    "phone_number": "54321098761",
+    "tags": null
+  },
+  {
+    "full_name": "Tim Dronkers",
+    "phone_number": "153-456-4654",
+    "email": "tim@aol.com",
+    "tags": null,
+    "id": 4
+  },
+  {
+    "full_name": "Miles Abbason",
+    "phone_number": "321-654-9874",
+    "email": "miles@gmail.com",
+    "tags": "family",
+    "id": 5
+  },
+  {
+    "full_name": "Katarina Rosiak",
+    "phone_number": "654-987-9877",
+    "email": "katarina@yahoo.com",
+    "tags": null,
+    "id": 6
+  },
+  {
+    "full_name": "lara",
+    "phone_number": "666-666-6666",
+    "email": "lara@bark.com",
+    "tags": "dog-walker",
+    "id": 7
+  },
+  {
+    "full_name": "barnaby",
+    "phone_number": "458-875-9874",
+    "email": "bby@nt.com",
+    "tags": "fast-walker quick-talker",
+    "id": 8
+  },
+  {
+    "full_name": "Test New",
+    "phone_number": "654-987-9877",
+    "email": "new@yeah.org",
+    "tags": "TESt CaPs",
+    "id": 9
+  }
+]

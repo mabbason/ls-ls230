@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="handlebars-v4.7.7.js"></script>
+  <title>Handlebars Practice</title>
+</head>
+<body>
+
+<div id="all-forms-container"></div>
+
+<script id='form-template' type='text/x-handlebars'>
+  <h1>{{formTitle}} {{formId}}</h1>
+  <form>
+    <ul>
+      <li>
+        <label for="email">E-mail:</label>
+        <input type="email" id="form {{formId}} email" name="email">
+      </li>
+      <li>
+        <label for="name">Name:</label>
+        <input type="text" id="form {{formId}} name" name="name">
+      </li>
+      <li>
+        <button type='submit' id="form {{formId}} submit">Submit</button>
+      </li>
+    </ul>
+  </form>
+</script>
+
+<script src="scripts.js"></script>
+</body>
+</html>

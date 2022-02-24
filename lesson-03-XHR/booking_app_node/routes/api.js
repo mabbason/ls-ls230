@@ -108,7 +108,7 @@ router.get('/schedules', function(req, res, next) {
   db.all('SELECT * FROM BOOKINGS;', function(err, rows) {
     const rand = Math.random();
     if (rand >= 0.5 && rows.length > 7) {      
-      sleep(7000);
+      sleep(1000);
     }
 
     res.json(rows);    

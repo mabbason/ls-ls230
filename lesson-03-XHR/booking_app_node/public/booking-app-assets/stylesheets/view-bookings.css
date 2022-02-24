@@ -1,0 +1,67 @@
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: rgb(223, 79, 79);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 28px;
+  margin: 25px;
+}
+
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: rgb(223, 79, 79);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 28px;
+  margin: 25px;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  margin-top: 25px;
+  margin-left: 25px;
+  margin-right: 25px;
+  width: auto;
+  padding-top: 1.25em;
+  padding-left: 2.25em;
+  padding-bottom: 1.25em;
+  border: 1px solid #CCC;
+  border-radius: 1em;
+}
+
+li {
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  color:rgb(223, 79, 79);
+  list-style: disc;
+  list-style-position: outside;
+  margin-top: 0.35em;
+  padding-left: 3px;
+}
+
+ul ul {
+  padding: 0;
+  margin: 0;
+  margin-left: 25px;
+  /* margin-top: 25px;
+  
+  margin-right: 25px;
+  width: auto;
+  padding-top: 1.25em;
+  padding-left: 2.25em;
+  padding-bottom: 1.25em; */
+  border: none;
+}
+
+li li {
+  cursor: default;
+  font-family: Arial, Helvetica, sans-serif;
+  color:rgb(223, 79, 79);
+  list-style: circle;
+  list-style-position: outside;
+  margin-top: 0.35em;
+  padding-left: 3px;
+}

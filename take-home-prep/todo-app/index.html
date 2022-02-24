@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simple Todo App to Help Understand MVC Pattern">
+    <link rel="stylesheet" type="text/css" href="./stylesheets/todo-app.css">
+    <script src="handlebars.runtime.js"></script>
+    <script src="./templates/templatesCompiled.js"></script>
+    <script type="module" src="./javascripts/app.js"></script>
+    <title>Todo App</title>
+  </head>
+  <body>
+    
+    <div id="main">
+
+      <h1>Todo List</h1>
+
+      <div id="add-todo-container">
+      </div>
+
+      <div id="list-todos-container">
+      </div>
+
+    </div>
+
+    <!-- <script id="addTodoFormTemplate" type="text/x-handlebars">
+      <form>
+        <input type="text" placeholder="{{placeholder}}" name="todo">
+        <button type="submit">Submit</button>
+      </form>
+    </script>
+
+    <script id='renderTodosTemplate' type='text/x-handlebars'>
+      <ul>
+        {{#if todos}}
+          {{#each todos}}
+            <li id="{{id}}">
+              <input type="checkbox"{{#if complete}} checked{{else}}{{/if}}>
+              <span content-editable="true" class="editable">
+                {{#if complete}}
+                  <s>{{text}}</s>
+                {{else}}
+                  {{text}}
+                {{/if}}
+              </span>
+              <button class='delete'>Delete</button>     
+            </li>
+        {{/each}}
+        {{else}}
+          No todos! Why not add some now?
+        {{/if}}
+
+      </ul>
+    </script>        -->
+  </body>
+  
+</html>

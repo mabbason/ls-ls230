@@ -1,0 +1,19 @@
+<ul>
+  {{#if todos}}
+    {{#each todos}}
+      <li id="{{id}}">
+        <input type="checkbox"{{#if complete}} checked{{else}}{{/if}}>
+        <span content-editable="true" class="editable">
+          {{#if complete}}
+            <s>{{text}}</s>
+          {{else}}
+            {{text}}
+          {{/if}}
+        </span>
+        <button class='delete'>Delete</button>     
+      </li>
+  {{/each}}
+  {{else}}
+    No todos! Why not add some now?
+  {{/if}}
+</ul>

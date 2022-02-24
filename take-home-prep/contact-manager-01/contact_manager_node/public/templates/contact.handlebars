@@ -1,0 +1,30 @@
+{{#if contacts}}
+  <div class="contact" id="{{id}}">
+    <h4>{{full_name}}</h4>
+    <h5>Phone Number:</h5>
+    <p>{{phone_number}}</p>
+    <h5>Email:</h5>
+    <p>{{email}}</p>
+    <h5>Tags:</h5>
+    <div>
+      {{#if tags}}
+        {{#each}}
+          <span>{{tag}}</span>
+        {{/each}}
+      {{else}}
+        <p>No associated tags</p>
+      {{/if}}
+    </div>
+    <div>
+      <button type="button" id="{{id}}_edit_btn">Edit</button>
+      <button type="button" id="{{id}}_delete_btn">Delete</button>
+    </div>
+  </div>
+{{else}}
+  <div class="emptyContacts"></div>
+    <p>There are no contacts{{#if searchVal.type === 'name'}} starting with {{else}} tagged with {{/if}}<strong>{{searchVal.value}}</strong>.</p>
+    {{#if !searchVal}}
+      <button type="button" class="addContactBtn">Add Contact</button>
+    {{/if}}
+  </div>
+{{/if}}
