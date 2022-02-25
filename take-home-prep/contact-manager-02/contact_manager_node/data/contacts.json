@@ -1,16 +1,37 @@
 [
   {
-    "full_name": "Miles Abbason",
-    "phone_number": "153-456-4654",
-    "email": "miles@gmail.com",
-    "tags": "Work,family",
+    "full_name": "First Last",
+    "phone_number": "123-123-1234",
+    "email": "first@last.com",
+    "tags": "test VIP fRienD",
     "id": 1
   },
   {
-    "full_name": "Tim Dronkers",
-    "phone_number": "321-654-9874",
-    "email": "tim@aol.com",
-    "tags": "Friend work",
+    "full_name": "Tim",
+    "phone_number": "321-321-3211",
+    "email": "tim@gmail.com",
+    "tags": "friend work",
     "id": 2
+  },
+  {
+    "full_name": "Katarina",
+    "phone_number": "456-789-0099",
+    "email": "katarina@yahoo.com",
+    "tags": "friend work",
+    "id": 3
+  },
+  {
+    "full_name": "CGLEE",
+    "phone_number": "444-55577345",
+    "email": "bossman@ls.com",
+    "tags": "instructor work",
+    "id": 4
+  },
+  {
+    "full_name": "Miles Abbason",
+    "phone_number": "153-456-4654",
+    "email": "miles@gmail.com",
+    "tags": "fast-walker quick-talker",
+    "id": 5
   }
 ]

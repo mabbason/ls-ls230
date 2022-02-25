@@ -50,6 +50,12 @@ class View {
     }
   }
 
+  #defaultState(homeView) {
+    let searchBox = document.querySelector('.searchBox');
+    searchBox.value = '';
+    homeView();
+  }
+
   renderHomeView(contacts, searchStr) {
     this.#makeActiveView(this.homeView);
     if (contacts.length > 0) {
@@ -81,10 +87,14 @@ class View {
     })
   }
 
-  defaultState(homeView) {
-    let searchBox = document.querySelector('.searchBox');
-    searchBox.value = '';
-    homeView();
+  bindSubmitCreateContact(handler) {
+    let form = document.querySelector('.formAddContact form');
+    console.log(form);
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      handler(form);
+    });
   }
 
   bindBodyClickHandlers(deleteContact, getContact, homeView, addContact, editContact) {
@@ -97,14 +107,14 @@ class View {
       else if (eClass.contains('contactDeleteBtn')) { deleteContact(id) }
       else if (eClass.contains('contactEditBtn')) { getContact(id) }
       else if (eClass.contains('cancel') || eClass.contains('header')) { 
-        this.defaultState(homeView) }
+        this.#defaultState(homeView) }
       else if (eClass.contains('addContactBtn')) { 
         this.#makeActiveView(this.formAddContact) } 
       else if (e.target.type === 'submit') {
-        let form = e.target.parentElement;
-        
-        if (form.className === 'formAddContact') { addContact(form) }
-        else if (form.className === 'formEditContact') { editContact(form) }
+        let form = e.target.parentElement.parentElement;
+        console.log(form);
+        if (form.classList.contains('formAddContact')) { addContact(form) }
+        else if (form.classList.contains('formEditContact')) { editContact(form) }
       }
     })
   }

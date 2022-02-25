@@ -11,7 +11,7 @@ class Controller {
                                this.handleAddContact.bind(this),
                                this.handleEditContact.bind(this)),
     this.view.bindSearchInput(this.handleSearchInput.bind(this)),
-    // this.view.bindDefaultState(this.handleRenderHomeView.bind(this)),
+    this.view.bindSubmitCreateContact(this.handleCreateContact.bind(this)),
     this.handleRenderHomeView()
   }
 
@@ -28,10 +28,6 @@ class Controller {
     return contacts;
   }
 
-  // #nameContainsSearch(first, last, search) {
-  //   return first.includes(search) || last.includes(search);
-  // }
-
   #tagsContainSearch(tagsArr, search) {
     if (!tagsArr) return false;
     return tagsArr.filter(tagObj => tagObj.tag.includes(search)).length > 0;
@@ -43,7 +39,6 @@ class Controller {
   }
 
   handleSearchInput(searchStr) {
-    // let contacts = this.model.contacts || await this.model.getContacts();
     let contacts = this.model.contacts;
     if (searchStr.length > 0 && searchStr !== '#') {
       searchStr = searchStr.toLowerCase();
