@@ -149,7 +149,9 @@ input:focus {
 
 .contact {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  position: relative;
   width: 200px;
+  min-height: 260px;
   margin: 10px;
   font-size: 0.75em;
   line-height: 1pt;
@@ -220,11 +222,33 @@ input:focus {
   margin-top: 1em;
 }
 
-.tag:hover {
-  cursor: pointer;
+.contactButtons {
+  position: absolute;
+  top: 225px;
+  left: 0px;
+
+  margin: 0;
+  bottom: -40%;
 }
 
-.addContactSubmit, .cancel {
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 0.85em;
+  padding: 3px 5px 5px 0px;
+  margin: 0px 5px 7px 5px;
+}
+
+.tag:hover {
+  cursor: pointer;
+  color:rgb(81, 144, 238);
+}
+
+
+.contactSubmit, .cancel {
   -webkit-transition: all 0.20s ease-in-out;
   -moz-transition: all 0.20s ease-in-out;
   -ms-transition: all 0.20s ease-in-out;
@@ -242,11 +266,24 @@ input:focus {
   border-radius: 0.5em;
 }
 
-.addContactSubmit:hover, .cancel:hover {
+.contactSubmit:hover, .cancel:hover {
   color: #fff;
   border: 1px solid #4e327c;
   background-color: #795aaa;
   cursor: pointer;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+}
+
+.footer {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: #925beb;
+  font-weight: normal;
+  font-size: 0.9em;
 }
 
 .hidden { display: none }

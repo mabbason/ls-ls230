@@ -2,12 +2,11 @@
 class Model {
   constructor() {
     this.contacts;
-    this.formatContactForExternal = this.#externalContactCallback.bind(this);
   }
 
-  #formInputToObj(rawForm) {
+  #formInputToObj(rawFormData) {
     let newContact = {};
-    let input = rawForm.elements;
+    let input = rawFormData.elements;
     
     for (let i = 0; i < input.length; i += 1) {
       if (input[i].tagName !== "BUTTON") {
@@ -41,13 +40,25 @@ class Model {
     return contact;
   }
 
-  #externalContactCallback(contact) {
+  formatContactForExternal(contact) {
+    contact = JSON.parse(JSON.stringify(contact));
     let tags = contact.tags;
     if (tags) {
       contact.tags = Array.isArray(tags) ?
         this.#tagArrayToString(tags) : this.#tagArrayToString(this.#tagStringToArray(tags));
     } else { contact['tags'] = null }
     return contact;
+  }
+
+  sortContacts(contacts) {
+    return contacts.sort((a, b) => {
+      a = a.full_name.split(' ').slice(-1)[0];
+      b = b.full_name.split(' ').slice(-1)[0];
+
+      if (a < b) return -1;
+      if (a > b) return 1;
+      return 0;
+    });
   }
 
   bindContactsChanged(callback) {
@@ -110,10 +121,11 @@ class Model {
 
   async editContact(formData) {
     let updatedContact = this.#formInputToObj(formData);
-    let id = formData.action.slice(-1);
+    console.log(updatedContact);
+    let id = updatedContact.id;
     
     try {
-      await fetch( formData.action, { 
+      await fetch( `${formData.action}${id}`, { 
         method: 'PUT', 
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedContact),

@@ -60,21 +60,29 @@ class View {
     this.#makeActiveView(this.homeView);
     if (contacts.length > 0) {
       let context = { contacts: contacts, search: searchStr };
-      const tempContent = document.querySelector('#contactTemplate').innerHTML;
-      const contactTemplate = Handlebars.compile(tempContent);
-      const allContactsHTML = contactTemplate(context);
+      // const tempContent = document.querySelector('#contactTemplate').innerHTML;
+      // const contactTemplate = Handlebars.compile(tempContent);
+      // const allContactsHTML = contactTemplate(context);
+      const allContactsHTML = Handlebars.templates.contact(context);
       document.querySelector('.listContacts').innerHTML = allContactsHTML;
     } else  {
       this.#renderNoContacts(searchStr);
     }
   }
 
-  renderEditContactForm(contact) {
+  renderEditContactForm(contact, handler) {
     this.#makeActiveView(this.formEditContact);
-    const tempContent = document.querySelector('#editFormTemplate').innerHTML;
-    const editFormTemplate = Handlebars.compile(tempContent);
-    const formHTML = editFormTemplate(contact);
-    document.querySelector('section.formEditContact').innerHTML = formHTML;
+    // const tempContent = document.querySelector('#editFormTemplate').innerHTML;
+    // const editFormTemplate = Handlebars.compile(tempContent);
+    // const formHTML = editFormTemplate(contact);
+    const formHTML = Handlebars.templates.editContact(contact);
+    let form = document.querySelector('form.formEditContact');
+    form.innerHTML = formHTML;
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      handler(form);
+    })
   }
 
   bindSearchInput(handler) {
@@ -87,12 +95,20 @@ class View {
     })
   }
 
-  bindBodyClickHandlers(deleteContact, getContact, homeView, addContact, editContact) {
-    document.body.addEventListener('click', e => {
+  bindSubmitCreateContact(handler) {
+    let form = document.querySelector('form.formAddContact');
+    form.addEventListener('submit', e => { 
       e.preventDefault();
-
-      let id = e.target.parentElement.id;
+      handler(form)
+    });
+  }
+  
+  bindBodyClickHandlers(deleteContact, getContact, homeView) {
+    document.body.addEventListener('click', e => {
+         
+      let id = e.target.parentElement.parentElement.id;
       let eClass = e.target.classList;
+
       if (eClass.contains('tag')) { this.#searchForTag(e.target.textContent) }
       else if (eClass.contains('contactDeleteBtn')) { deleteContact(id) }
       else if (eClass.contains('contactEditBtn')) { getContact(id) }
@@ -100,12 +116,6 @@ class View {
         this.#defaultState(homeView) }
       else if (eClass.contains('addContactBtn')) { 
         this.#makeActiveView(this.formAddContact) } 
-      else if (e.target.type === 'submit') {
-        let form = e.target.parentElement.parentElement;
-        console.log(form);
-        if (form.classList.contains('formAddContact')) { addContact(form) }
-        else if (form.classList.contains('formEditContact')) { editContact(form) }
-      }
     })
   }
 }

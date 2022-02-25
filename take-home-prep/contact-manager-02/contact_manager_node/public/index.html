@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Contact Manager</title>
   <link rel='stylesheet' href='./stylesheets/cm-styles.css'/>
-  <!-- <style>
-    .hidden { display: none }
-  </style> -->
   <script src="./javascripts/jquery.js"></script>
-  <script src="./javascripts/handlebars.js"></script>
+  <script src="https://kit.fontawesome.com/5be2f75fb2.js" crossorigin="anonymous"></script>
+  <script src="./javascripts/handlebars.runtime.js"></script>
+  <script src="./javascripts/templates.js"></script>
   <script type="module" src="./javascripts/app.js"></script>
 </head>
 <body>
@@ -22,7 +21,7 @@
     <section class="homeView">
       <div class="interactBar">
         <button class="addContactBtn">Add Contact</button>
-        <input type="text" class="searchBox">
+        <input type="text" class="searchBox" placeholder="Search by name or #tag">
       </div>
       <div class="listContacts">
       </div>
@@ -33,7 +32,7 @@
         <ul>
           <li>   
             <label for="name">Name:</label>
-            <input type="text" id="name" name="full_name" placeholder="First Last" required pattern="^(\w+)\s(\w+)$" >
+            <input type="text" id="name" name="full_name" pattern="^(\w+)\s(\w+)$" placeholder="First Last" required title="First Last">
           </li>
           <li>
             <label for="email">E-mail:</label>
@@ -45,19 +44,22 @@
           </li>
           <li>
             <label for="tags">Tags:</label>
-            <input type="text" pattern="[#a-z-][^a-z]*[a-z-]*" placeholder="work, friend, VIP..." id="tags" name="tags" title="eg. work, friend, custom...">
+            <input type="text" placeholder="work, friend, VIP..." id="tags" name="tags" title="eg. work, friend, custom...">
           </li>
-          <button type="submit" class="addContactSubmit">Submit</button>
+          <button type="submit" class="addContactSubmit contactSubmit">Submit</button>
           <button type="button" class="cancel">Cancel</button>
         </ul>
-        
       </form>
     </section>
     <section class="formEditContact contactForm">
-      
+      <h3>Edit Contact</h3>
+      <form action="/api/contacts/" class="formEditContact" method="PUT">
+      </form>
     </section>
   </main>
-  <footer>Developed by Miles Abbason</footer>
+  <footer>
+    <div class="footer">Developed by Miles Abbason</div>
+  </footer>
 
   <script id='contactTemplate' type='text/x-handlebars'>
     {{#each contacts}}
@@ -79,19 +81,17 @@
   </script>
 
   <script id='editFormTemplate' type='text/x-handlebars'>
-    <h3>Edit Contact</h3>
-      <form action="/api/contacts/{{id}}" class="formEditContact" method="PUT">
-        <label for="name">Name:</label>
-        <input type="text" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"id="name" name="full_name" value="{{full_name}}" required>
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" value="{{email}}" required>
-        <label for="phone">Phone Number:</label>
-        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="phone" name="phone_number" value="{{phone_number}}">
-        <label for="tags">Tags:</label>
-        <input type="text" pattern="[a-z-][^a-z]*[a-z-]*" id="tags" name="tags" value="{{#if tags}}{{tags}}{{else}}{{/if}}" title="eg. work, friend, custom...">
-        <button type="submit" class="addContactSubmit">Submit</button>
-        <button type="button" class="cancel">Cancel</button>
-      </form>
+    <input type="hidden" id="contactId" name="id" value="{{id}}">
+    <label for="name">Name:</label>
+    <input type="text" pattern="^(\w+)\s(\w+)$" id="name" name="full_name" value="{{full_name}}" required>
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" value="{{email}}" required>
+    <label for="phone">Phone Number:</label>
+    <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="phone" name="phone_number" value="{{phone_number}}">
+    <label for="tags">Tags:</label>
+    <input type="text" id="tags" name="tags" value="{{#if tags}}{{tags}}{{else}}{{/if}}" title="eg. work, friend, custom...">
+    <button type="submit" class="addContactSubmit">Submit</button>
+    <button type="button" class="cancel">Cancel</button>
   </script>
 </body>
 </html>

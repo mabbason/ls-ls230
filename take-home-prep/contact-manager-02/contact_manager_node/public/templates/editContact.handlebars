@@ -1,0 +1,21 @@
+<ul>
+  <li>   
+    <input type="hidden" id="contactId" name="id" value="{{id}}">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="full_name" pattern="^(\w+)\s(\w+)$" placeholder="First Last" value="{{full_name}}" required title="First Last">
+  </li>
+  <li>
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" placeholder="email@example.com" value="{{email}}" required>
+  </li>
+  <li>
+    <label for="phone">Phone Number:</label>
+    <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" id="phone" name="phone_number" value="{{phone_number}}" title="eg. 123-456-7894">
+  </li>
+  <li>
+    <label for="tags">Tags:</label>
+    <input type="text" placeholder="work, friend, VIP..." id="tags" name="tags" value="{{#if tags}}{{tags}}{{else}}{{/if}}" title="eg. work, friend, custom...">
+  </li>
+  <button type="submit" class="editContactSubmit contactSubmit">Submit</button>
+  <button type="button" class="cancel">Cancel</button>
+</ul>

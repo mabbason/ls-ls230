@@ -6,11 +6,10 @@ class Controller {
     
     this.model.bindContactsChanged(this.handleRenderHomeView.bind(this)),
     this.view.bindBodyClickHandlers(this.handleDeleteContact.bind(this),
-                               this.getContactToEdit.bind(this),
-                               this.handleRenderHomeView.bind(this),
-                               this.handleAddContact.bind(this),
-                               this.handleEditContact.bind(this)),
+                                    this.getContactToEdit.bind(this),
+                                    this.handleRenderHomeView.bind(this)),
     this.view.bindSearchInput(this.handleSearchInput.bind(this)),
+    this.view.bindSubmitCreateContact(this.handleCreateContact.bind(this)),
     this.handleRenderHomeView()
   }
 
@@ -22,7 +21,6 @@ class Controller {
       } else {
         return contact.full_name.toLowerCase().includes(search);
       }
-
     });
     return contacts;
   }
@@ -34,6 +32,7 @@ class Controller {
 
   async handleRenderHomeView() {
     let contacts = this.model.contacts || await this.model.getContacts();
+    contacts = this.model.sortContacts(contacts);
     this.view.renderHomeView(contacts);
   }
 
@@ -47,10 +46,6 @@ class Controller {
   }
 
   handleCreateContact(formData) {
-    this.model.createContact(formData);
-  }
-
-  handleAddContact(formData) {
     this.model.createContact(formData);
   }
 
