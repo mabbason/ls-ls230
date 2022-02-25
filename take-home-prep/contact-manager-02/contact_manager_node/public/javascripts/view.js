@@ -26,13 +26,34 @@ class View {
     element.classList.remove('hidden');
   }
 
+  #renderNoContacts(searchStr) {
+    if (searchStr) {
+      let resultHTML = searchStr.startsWith('#') ?
+        `<h3>No contacts with tags that include <strong>'${searchStr.slice(1)}'</strong></h3>` :
+        `<h3>No contacts with <strong>'${searchStr.slice(1)}'</strong> in their name</h3>`
+      document.querySelector('.listContacts').innerHTML = resultHTML;
+    } else {
+      let listContacts = document.querySelector('.listContacts');
+      listContacts.innerHTML = '<h3>The contact list is empty.</h3>';
+
+      let addContactButton = document.createElement('button');
+      addContactButton.classList.add('addContactBtn');
+
+      listContacts.append(addContactButton);
+    }
+  }
+
   renderHomeView(contacts, searchStr) {
     this.#makeActiveView(this.homeView);
-    let context = { contacts: contacts, search: searchStr };
-    const tempContent = document.querySelector('#contactTemplate').innerHTML;
-    const contactTemplate = Handlebars.compile(tempContent);
-    const allContactsHTML = contactTemplate(context);
-    document.querySelector('.listContacts').innerHTML = allContactsHTML;
+    if (contacts.length > 0) {
+      let context = { contacts: contacts, search: searchStr };
+      const tempContent = document.querySelector('#contactTemplate').innerHTML;
+      const contactTemplate = Handlebars.compile(tempContent);
+      const allContactsHTML = contactTemplate(context);
+      document.querySelector('.listContacts').innerHTML = allContactsHTML;
+    } else  {
+      this.#renderNoContacts(searchStr);
+    }
   }
 
   renderEditContactForm(contact) {
@@ -54,7 +75,7 @@ class View {
   }
 
   bindMainClickHandlers(deleteContact, getContact, cancel, addContact, editContact) {
-    document.querySelector('main').addEventListener('click', e => {
+    document.body.addEventListener('click', e => {
       e.preventDefault();
 
       let id = e.target.parentElement.id;
@@ -62,7 +83,7 @@ class View {
 
       if (eClass.contains('contactDeleteBtn')) { deleteContact(id) }
       else if (eClass.contains('contactEditBtn')) { getContact(id) }
-      else if (eClass.contains('cancel')) { cancel() }
+      else if (eClass.contains('cancel') || eClass.contains('header')) { cancel() }
       else if (eClass.contains('addContactBtn')) { 
         this.#makeActiveView(this.formAddContact) 
       } 

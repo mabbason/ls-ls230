@@ -54,12 +54,5 @@
     "email": "bby@nt.com",
     "tags": "fast-walker quick-talker",
     "id": 8
-  },
-  {
-    "full_name": "Test New",
-    "phone_number": "654-987-9877",
-    "email": "new@yeah.org",
-    "tags": "TESt CaPs",
-    "id": 9
   }
 ]
