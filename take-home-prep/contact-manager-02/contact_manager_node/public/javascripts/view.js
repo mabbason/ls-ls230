@@ -26,6 +26,12 @@ class View {
     element.classList.remove('hidden');
   }
 
+  #searchForTag(searchStr) {
+    let searchBox = document.querySelector('.searchBox');
+    searchBox.value = searchStr;
+    searchBox.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+
   #renderNoContacts(searchStr) {
     if (searchStr) {
       let resultHTML = searchStr.startsWith('#') ?
@@ -38,6 +44,7 @@ class View {
 
       let addContactButton = document.createElement('button');
       addContactButton.classList.add('addContactBtn');
+      addContactButton.textContent = 'Add Contact';
 
       listContacts.append(addContactButton);
     }
@@ -74,19 +81,25 @@ class View {
     })
   }
 
-  bindMainClickHandlers(deleteContact, getContact, cancel, addContact, editContact) {
+  defaultState(homeView) {
+    let searchBox = document.querySelector('.searchBox');
+    searchBox.value = '';
+    homeView();
+  }
+
+  bindBodyClickHandlers(deleteContact, getContact, homeView, addContact, editContact) {
     document.body.addEventListener('click', e => {
       e.preventDefault();
 
       let id = e.target.parentElement.id;
       let eClass = e.target.classList;
-
-      if (eClass.contains('contactDeleteBtn')) { deleteContact(id) }
+      if (eClass.contains('tag')) { this.#searchForTag(e.target.textContent) }
+      else if (eClass.contains('contactDeleteBtn')) { deleteContact(id) }
       else if (eClass.contains('contactEditBtn')) { getContact(id) }
-      else if (eClass.contains('cancel') || eClass.contains('header')) { cancel() }
+      else if (eClass.contains('cancel') || eClass.contains('header')) { 
+        this.defaultState(homeView) }
       else if (eClass.contains('addContactBtn')) { 
-        this.#makeActiveView(this.formAddContact) 
-      } 
+        this.#makeActiveView(this.formAddContact) } 
       else if (e.target.type === 'submit') {
         let form = e.target.parentElement;
         

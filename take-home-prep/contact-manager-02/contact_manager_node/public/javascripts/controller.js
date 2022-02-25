@@ -5,12 +5,13 @@ class Controller {
     this.view = view,
     
     this.model.bindContactsChanged(this.handleRenderHomeView.bind(this)),
-    this.view.bindMainClickHandlers(this.handleDeleteContact.bind(this),
+    this.view.bindBodyClickHandlers(this.handleDeleteContact.bind(this),
                                this.getContactToEdit.bind(this),
                                this.handleRenderHomeView.bind(this),
                                this.handleAddContact.bind(this),
                                this.handleEditContact.bind(this)),
     this.view.bindSearchInput(this.handleSearchInput.bind(this)),
+    // this.view.bindDefaultState(this.handleRenderHomeView.bind(this)),
     this.handleRenderHomeView()
   }
 
