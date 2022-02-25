@@ -11,7 +11,6 @@ class Controller {
                                this.handleAddContact.bind(this),
                                this.handleEditContact.bind(this)),
     this.view.bindSearchInput(this.handleSearchInput.bind(this)),
-    this.view.bindSubmitCreateContact(this.handleCreateContact.bind(this)),
     this.handleRenderHomeView()
   }
 

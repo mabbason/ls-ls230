@@ -87,16 +87,6 @@ class View {
     })
   }
 
-  bindSubmitCreateContact(handler) {
-    let form = document.querySelector('.formAddContact form');
-    console.log(form);
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      handler(form);
-    });
-  }
-
   bindBodyClickHandlers(deleteContact, getContact, homeView, addContact, editContact) {
     document.body.addEventListener('click', e => {
       e.preventDefault();
