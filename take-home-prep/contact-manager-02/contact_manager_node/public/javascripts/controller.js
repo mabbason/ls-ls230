@@ -59,7 +59,7 @@ class Controller {
 
   getContactToEdit(id) {
     let contact = this.model.contacts.find(contact => contact.id === Number(id));
-    contact = this.model.formatContactForExternal(contact);
+    contact = this.model.formatTagsForExternal(contact);
     this.view.renderEditContactForm(contact, this.handleEditContact.bind(this));
   }
 }

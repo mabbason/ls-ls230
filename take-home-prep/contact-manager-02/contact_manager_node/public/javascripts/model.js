@@ -13,7 +13,15 @@ class Model {
         newContact[input[i].name] = input[i].value;
       }
     }
+    newContact = this.formatTagsForExternal(newContact);
     return newContact;
+  }
+
+  #deDuplicateContactTags(contact) {
+    let tags = contact.tags.split(',');
+    contact.tags = tags.filter((tag, index, tags) => tags.indexOf(tag) === index)
+                       .join();
+    return contact;
   }
   
   #tagStringToArray(str) {
@@ -27,11 +35,11 @@ class Model {
     return arr.map(tagObj => tagObj.tag).join()
   }
 
-  #formatTagsForLocal(contacts) {
-    return contacts.map(contact => this.#formatContactForLocal(contact))
+  #formatContactsForLocal(contacts) {
+    return contacts.map(contact => this.#formatTagsForLocal(contact))
   }
 
-  #formatContactForLocal(contact) {
+  #formatTagsForLocal(contact) {
     if (contact.tags) {
       if (!Array.isArray(contact.tags)) {
         contact.tags = this.#tagStringToArray(contact.tags)
@@ -40,7 +48,7 @@ class Model {
     return contact;
   }
 
-  formatContactForExternal(contact) {
+  formatTagsForExternal(contact) {
     contact = JSON.parse(JSON.stringify(contact));
     let tags = contact.tags;
     if (tags) {
@@ -91,13 +99,14 @@ class Model {
       .catch(error => {
         alert(`${error.message}Please try again later.`); 
       });
-    this.contacts = this.#formatTagsForLocal(contacts);
+    this.contacts = this.#formatContactsForLocal(contacts);
     return this.contacts;
   }
 
   async createContact(formData) {
     let newContactInfo = this.#formInputToObj(formData);
-
+    newContactInfo = this.#deDuplicateContactTags(newContactInfo);
+    
     try {
       await fetch( '/api/contacts/', { 
         method: 'POST', 
@@ -110,7 +119,7 @@ class Model {
         })
         .then(addedContact => {
           this.contacts.push(addedContact);
-          this.contacts = this.#formatTagsForLocal(this.contacts);
+          this.contacts = this.#formatContactsForLocal(this.contacts);
           formData.reset();
           this.onContactsChanged();
         });
@@ -121,7 +130,7 @@ class Model {
 
   async editContact(formData) {
     let updatedContact = this.#formInputToObj(formData);
-    console.log(updatedContact);
+    updatedContact = this.#deDuplicateContactTags(updatedContact);
     let id = updatedContact.id;
     
     try {
@@ -136,7 +145,7 @@ class Model {
         })
         .then(updatedContact => {
           this.contacts = this.contacts.filter(contact => contact.id !== Number(id));
-          updatedContact = this.#formatContactForLocal(updatedContact);
+          updatedContact = this.#formatTagsForLocal(updatedContact);
           this.contacts.push(updatedContact);
           this.onContactsChanged();
         });

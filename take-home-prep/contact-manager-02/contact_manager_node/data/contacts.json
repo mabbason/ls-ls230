@@ -1,1 +1,44 @@
-[]
+[
+  {
+    "full_name": "Tim Dronkers",
+    "phone_number": "777-888-9999",
+    "email": "tim@aol.com",
+    "tags": "work,test-case",
+    "id": 2
+  },
+  {
+    "full_name": "Jim Beam",
+    "phone_number": "654-654-6549",
+    "email": "jim@aol.com",
+    "tags": "fast-walker quick-talker",
+    "id": 3
+  },
+  {
+    "full_name": "Miles Abbason",
+    "phone_number": "153-456-4654",
+    "email": "miles@gmail.com",
+    "tags": "work,family",
+    "id": 5
+  },
+  {
+    "full_name": "Barbara Jane",
+    "phone_number": "999-888-7777",
+    "email": "barb@go.io",
+    "tags": "work",
+    "id": 7
+  },
+  {
+    "full_name": "Katarina Rosiak",
+    "phone_number": "777-888-9999",
+    "email": "katarina@yahoo.com",
+    "tags": "work,friend,staff",
+    "id": 8
+  },
+  {
+    "full_name": "Kyle Kirst",
+    "phone_number": "888-777-9999",
+    "email": "kyle@gmail.com",
+    "tags": "vip,family,friend",
+    "id": 9
+  }
+]

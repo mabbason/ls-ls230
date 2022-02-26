@@ -16,8 +16,6 @@
     "path": "0.12.7"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.17.0",
-    "babel-eslint": "^10.1.0",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
     "concurrently": "2.2.0",
